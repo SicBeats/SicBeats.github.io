@@ -2,6 +2,7 @@ export const leagueID = "1048770475687571456";
 export const leagueName = "Dynasty Is Crazy Cool (DICC)";
 export const dynasty = true;
 export const last_regular_season_week = 14;
+export const num_matchups = 5;
 
 export const homepageText = `
     <h1>Dynasty Is Crazy Cool</h1>

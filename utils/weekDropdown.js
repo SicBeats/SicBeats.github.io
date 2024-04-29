@@ -1,4 +1,4 @@
-import { last_regular_season_week, leagueID, managers } from "./leagueInfo.mjs";
+import { last_regular_season_week, leagueID, managers, num_matchups } from "./leagueInfo.mjs";
 
 document.addEventListener('DOMContentLoaded', function() {
     const weekDropdown = document.getElementById('week_num');
@@ -37,20 +37,22 @@ function getWeeklyMatchupData() {
 }
 
 function processWeeklyMatchupData(data) {
-    const NUM_MATCHUPS = 5;
+    let returnMap = {};
 
-    for (let i = 1; i <= NUM_MATCHUPS; i++) {
+    for (let i = 1; i <= num_matchups; i++) {
 
         const matchupData = data.filter(matchup => matchup.matchup_id === i);
 
         if (matchupData) {
 
-            console.log("Matchup ID: ", i);
-
             matchupData.forEach(matchup => {
+
                 const participatingManager = managers.find(manager => manager.roster_num === matchup.roster_id);
+
                 if (participatingManager) {
-                    console.log(participatingManager.name);
+
+                    returnMap[i].push(participatingManager.name);
+
                 }
             });
 
@@ -60,4 +62,6 @@ function processWeeklyMatchupData(data) {
 
         }
     }
+
+    console.log(returnMap);
 }
