@@ -38,16 +38,16 @@ function getWeeklyMatchupData() {
 
 function processWeeklyMatchupData(data) {
     const NUM_MATCHUPS = 5;
-    const targetMatchup = [1];
 
-    const matchup_one = data.filter(matchup => targetMatchup.includes(matchup.matchup_id));
-    if (matchup_one.length > 0) {
-        matchup_one.forEach(matchup => {
+    for (let i = 1; i < NUM_MATCHUPS; i++) {
+        const matchupData = data.filter(matchup => (i == matchup.matchup_id));
+        if (matchupData.length > 0) {
             console.log("Matchup ID: ", matchup.matchup_id);
-            console.log("Roster ID: ", matchup.roster_id);
-        });
-
-    } else {
-        console.log("No matching matchups found...");
+            matchupData.forEach(matchup => {
+                console.log("Roster ID: ", matchup.roster_id);
+            });
+        } else {
+            console.log("No matching matchups found...");
+        }
     }
 }
