@@ -27,8 +27,13 @@ function getWeeklyMatchupData() {
             throw new Error('Network response was not ok.');
         })
         .then(data => {
-            processWeeklyMatchupData(data);
-            document.getElementById('responseContainer').innerHTML = JSON.stringify(data, null, 2);
+            const matchupMap = processWeeklyMatchupData(data);
+
+            const responseContainer = document.getElementById('responseContainer');
+            responseContainer.innerHTML = '';
+
+            displayWeeklyMatchupData(matchupMap);
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -42,18 +47,15 @@ function processWeeklyMatchupData(data) {
     for (let i = 1; i <= num_matchups; i++) {
 
         const matchupData = data.filter(matchup => matchup.matchup_id === i);
-
         if (matchupData) {
 
             matchupData.forEach(matchup => {
 
                 const participatingManager = managers.find(manager => manager.roster_num === matchup.roster_id);
-
                 if (participatingManager) {
-
                     appendToKey(i, participatingManager.name, returnMap);
-
                 }
+
             });
 
         } else {
@@ -63,7 +65,28 @@ function processWeeklyMatchupData(data) {
         }
     }
 
-    console.log(returnMap);
+    return returnMap;
+}
+
+function displayWeeklyMatchupData(matchupMap) {
+    const mapContainer = document.createElement('div');
+
+    for (const [key, values] of matchupMap.entries()) {
+        const key = document.createElement('h3');
+        key.textContent = `Matchup ID: ${key}`;
+        mapContainer.appendChild(key);
+
+        const valuesList = document.createElement('ul');
+        values.forEach(value => {
+            const item = document.createElement('li');
+            item.textContent = value;
+            valuesList.append(item);
+        });
+
+        mapContainer.appendChild(valuesList);
+
+    }
+    document.getElementById('responseContainer').appendChild(mapContainer);
 }
 
 function appendToKey(key, value, map) {
