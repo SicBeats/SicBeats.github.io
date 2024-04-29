@@ -39,10 +39,10 @@ function getWeeklyMatchupData() {
 function processWeeklyMatchupData(data) {
     const NUM_MATCHUPS = 5;
 
-    for (let i = 1; i < NUM_MATCHUPS; i++) {
+    for (let i = 1; i <= NUM_MATCHUPS; i++) {
         const matchupData = data.filter(matchup => matchup.matchup_id === i);
         if (matchupData) {
-            console.log("Matchup ID: ", matchupData.matchup_id);
+            console.log("Matchup ID: ", i);
             matchupData.forEach(matchup => {
                 console.log("Roster ID: ", matchup.roster_id);
             });
