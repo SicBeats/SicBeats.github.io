@@ -72,9 +72,9 @@ function displayWeeklyMatchupData(matchupMap) {
     const mapContainer = document.createElement('div');
 
     for (const [key, values] of matchupMap.entries()) {
-        const key = document.createElement('h3');
-        key.textContent = `Matchup ID: ${key}`;
-        mapContainer.appendChild(key);
+        const keyElement = document.createElement('h3');
+        keyElement.textContent = `Matchup ID: ${key}`;
+        mapContainer.appendChild(keyElement);
 
         const valuesList = document.createElement('ul');
         values.forEach(value => {
