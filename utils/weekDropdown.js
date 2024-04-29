@@ -1,4 +1,4 @@
-import { last_regular_season_week, leagueID } from "./leagueInfo";
+import { last_regular_season_week, leagueID } from "./leagueInfo.mjs";
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log("reched here 1");
