@@ -42,7 +42,7 @@ function processWeeklyMatchupData(data) {
 
     const matchup_one = data.filter(matchup => targetMatchup.includes(matchup.matchup_id));
     if (matchup_one.length > 0) {
-        matchup_one.array.forEach(matchup => {
+        matchup_one.forEach(matchup => {
             console.log("Matchup ID: ", matchup.matchup_id);
             console.log("Roster ID: ", matchup.roster_id);
         });
