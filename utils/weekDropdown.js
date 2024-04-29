@@ -40,14 +40,14 @@ function processWeeklyMatchupData(data) {
     const NUM_MATCHUPS = 5;
 
     for (let i = 1; i < NUM_MATCHUPS; i++) {
-        const matchupData = data.filter(matchup => (i == matchup.matchup_id));
-        if (matchupData.length > 0) {
+        const matchupData = data.filter(matchup => matchup.matchup_id === i);
+        if (matchupData) {
             console.log("Matchup ID: ", matchupData.matchup_id);
             matchupData.forEach(matchup => {
-                console.log("Roster ID: ", matchupData.roster_id);
+                console.log("Roster ID: ", matchup.roster_id);
             });
         } else {
-            console.log("No matching matchups found...");
+            console.log(`No matching matchups found for matchup_id ${i}.`);
         }
     }
 }
