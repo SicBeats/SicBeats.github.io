@@ -1,15 +1,15 @@
-export const leagueID = "1048770475687571456";
-export const leagueName = "Dynasty Is Crazy Cool (DICC)";
-export const dynasty = true;
-export const last_regular_season_week = 14;
+const leagueID = "1048770475687571456";
+const leagueName = "Dynasty Is Crazy Cool (DICC)";
+const dynasty = true;
+const last_regular_season_week = 14;
 
-export const homepageText = `
+const homepageText = `
     <h1>Dynasty Is Crazy Cool</h1>
     <br>
     <p>League Test Page</p>
 `;
 
-export const managers = [
+const managers = [
     {
         "managerID": "471440855413026816",
         "name": "DynastyRyan",
