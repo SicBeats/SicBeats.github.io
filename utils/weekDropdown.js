@@ -51,7 +51,7 @@ function processWeeklyMatchupData(data) {
 
                 if (participatingManager) {
 
-                    returnMap[i].push(participatingManager.name);
+                    appendToKey(i, participatingManager.name, returnMap);
 
                 }
             });
@@ -64,4 +64,12 @@ function processWeeklyMatchupData(data) {
     }
 
     console.log(returnMap);
+}
+
+function appendToKey(key, value, map) {
+    if (map.has(key)) {
+        map.get(key).push(value);
+    } else {
+        map.set(key, [value]);
+    }
 }
