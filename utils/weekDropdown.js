@@ -37,7 +37,7 @@ function getWeeklyMatchupData() {
 }
 
 function processWeeklyMatchupData(data) {
-    let returnMap = {};
+    let returnMap = new Map();
 
     for (let i = 1; i <= num_matchups; i++) {
 
