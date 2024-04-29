@@ -1,7 +1,6 @@
 import { last_regular_season_week, leagueID } from "./leagueInfo.mjs";
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("reched here 1");
     const weekDropdown = document.getElementById('week_num');
 
     for (let i = 1; i <= last_regular_season_week; i++) {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         option.text = 'Week ' + i;
         weekDropdown.appendChild(option);
     }
-    console.log("reched here 2");
 
     weekDropdown.addEventListener('change', function() {
         getWeeklyMatchupData();
@@ -29,10 +27,27 @@ function getWeeklyMatchupData() {
             throw new Error('Network response was not ok.');
         })
         .then(data => {
+            processWeeklyMatchupData(data);
             document.getElementById('responseContainer').innerHTML = JSON.stringify(data, null, 2);
         })
         .catch(error => {
             console.error('Fetch error:', error);
             document.getElementById('responseContainer').innerHTML = 'Error: ' + error.message;
         });
+}
+
+function processWeeklyMatchupData(data) {
+    const NUM_MATCHUPS = 5;
+    const targetMatchup = [1];
+
+    const matchup_one = data.filter(matchup => targetMatchup.includes(matchup.matchup_id));
+    if (matchup_one.length > 0) {
+        matchup_one.array.forEach(matchup => {
+            console.log("Matchup ID: ", matchup.matchup_id);
+            console.log("Roster ID: ", matchup.roster_id);
+        });
+
+    } else {
+        console.log("No matching matchups found...");
+    }
 }
