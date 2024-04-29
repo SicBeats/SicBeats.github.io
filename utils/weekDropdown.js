@@ -1,6 +1,7 @@
 import { last_regular_season_week, leagueID } from "./leagueInfo";
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("reched here 1");
     const weekDropdown = document.getElementById('week_num');
 
     for (let i = 1; i <= last_regular_season_week; i++) {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         option.text = 'Week ' + i;
         weekDropdown.appendChild(option);
     }
+    console.log("reched here 2");
 
     weekDropdown.addEventListener('change', function() {
         getWeeklyMatchupData();
