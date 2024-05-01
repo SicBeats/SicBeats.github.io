@@ -46,6 +46,23 @@ function processWeeklyTransactions(data) {
         const type = transaction.type;
         const status = transaction.status;
         const roster_ids = transaction.roster_ids;
+
+        // switch(type) {
+        //     case "trade":
+        //         acquireTradeDetails(transaction);
+        //         break;
+        //     case "free_agent":
+        //         acquireFreeAgentDetails(transaction);
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        if(type === "free_agent") {
+            console.log("drops: ", transaction.drops);
+            console.log("adds: ", transaction.adds);
+        }
+
         let participatingManagerNames = [];
 
         roster_ids.forEach(roster_id => {
@@ -64,3 +81,11 @@ function processWeeklyTransactions(data) {
 
     return returnList;
 }
+
+// function acquireTradeDetails(trade) {
+
+// }
+
+// function acquireFreeAgentDetails(transaction){
+//     console.log(transaction.)
+// }
