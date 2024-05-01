@@ -52,26 +52,32 @@ function processWeeklyTransactions(data) {
                 acquireTradeDetails(transaction);
                 break;
             case "free_agent":
-                acquireFreeAgentDetails(transaction);
+                const freeAgentDetails = acquireFreeAgentDetails(transaction);
                 break;
             default:
                 break;
         }
 
-        // let participatingManagerNames = [];
+        let participatingManagerNames = [];
 
-        // roster_ids.forEach(roster_id => {
-        //     const participatingManager = managers.find(manager => manager.roster_num === roster_id);
-        //     participatingManagerNames.push(participatingManager.name);
-        // })
+        roster_ids.forEach(roster_id => {
+            const participatingManager = managers.find(manager => manager.roster_num === roster_id);
+            participatingManagerNames.push(participatingManager.name);
+        })
 
-        // const managerNames = participatingManagerNames.join(', ');
+        const managerNames = participatingManagerNames.join(', ');
 
-        // console.log(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
-        // console.log(`-------------------------------------------------------------------------------------------`);
+        console.log(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
+        console.log(`-------------------------------------------------------------------------------------------`);
 
-        // returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
-        // returnList.push(`-------------------------------------------------------------------------------------------`);
+        returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
+        if(freeAgentDetails[0] != []) {
+            returnList.push(`Adds: ${freeAgentDetails[0]}`);
+        }
+        if(freeAgentDetails[1] != []) {
+            returnList.push(`Drops: ${freeAgentDetails[1]}`);
+        }
+        returnList.push(`-------------------------------------------------------------------------------------------`);
     });
 
     return returnList;
@@ -81,6 +87,27 @@ function acquireTradeDetails(trade) {
     console.log(trade.type);
 }
 
-function acquireFreeAgentDetails(transaction){
-    console.log("drop count: ", Object.entries(transaction.drops).length)
+function acquireFreeAgentDetails(transaction) {
+    const dropSize = Object.entries(transaction.drops).length;
+    const addSize = Object.entries(transaction.adds).length;
+
+    let dropList = [];
+    let addList = [];
+
+    if (dropSize) {
+        dropList.push("Dropped: ");
+        transaction.drops.forEach(drop => {
+            dropList.push(drop[0], ", ");
+        });
+    }
+
+    if (addSize) {
+        addList.push("Added: ");
+        transactions.adds.forEach(add => {
+            addList.push(add[0], ", ");
+        });
+    }
+
+    return addList, dropList;
+
 }
