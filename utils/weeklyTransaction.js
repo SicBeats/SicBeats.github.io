@@ -50,7 +50,7 @@ function processWeeklyTransactions(data) {
 
         roster_ids.forEach(roster_id => {
             const participatingManager = managers.find(manager => manager.roster_num === roster_id);
-            participatingManagerNames.push(participatingManager);
+            participatingManagerNames.push(participatingManager.name);
         })
 
         const managerNames = participatingManagerNames.join(', ');
