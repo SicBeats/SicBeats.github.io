@@ -40,10 +40,9 @@ function getWeeklyTransactionData() {
 }
 
 function processWeeklyTransactions(data) {
-    const transactions = JSON.parse(data);
     let returnList = [];
 
-    transactions.forEach(transaction => {
+    data.forEach(transaction => {
         const type = transaction.type;
         const status = transaction.status;
         const roster_ids = transaction.roster_ids;
