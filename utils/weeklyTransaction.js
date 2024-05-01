@@ -55,11 +55,11 @@ function processWeeklyTransactions(data) {
 
         const managerNames = participatingManagerNames.join(', ');
 
-        console.log(`Transaction type ${type}, Status: ${status}, Players involved: ${managerNames}`);
+        console.log(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
         console.log(`-------------------------------------------------------------------------------------------`);
 
-        returnList.push(`Transaction type ${type}, Status: ${status}, Players involved: ${managerNames}`);
-        returnList.push(`-------------------------------------------------------------------------------------------`);
+        returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}\n`);
+        returnList.push(`-------------------------------------------------------------------------------------------\n`);
     });
 
     return returnList;
