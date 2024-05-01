@@ -72,17 +72,19 @@ function processWeeklyTransactions(data) {
         console.log(`-------------------------------------------------------------------------------------------`);
 
         returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
-        if(freeAgentDetails[0] != []) {
-            let dropStatement = 'Dropped: ';
-            const dropsString = freeAgentDetails[0].join(', ');
-            dropStatement += dropsString;
-            returnList.push(dropStatement);
-        }
-        if(freeAgentDetails[1] != []) {
-            let addStatement = 'Added: ';
-            const addsString = freeAgentDetails[1].join(', ');
-            addStatement += addsString;
-            returnList.push(addStatement);
+        if (freeAgentDetails != null) {
+            if(freeAgentDetails[0] != []) {
+                let dropStatement = 'Dropped: ';
+                const dropsString = freeAgentDetails[0].join(', ');
+                dropStatement += dropsString;
+                returnList.push(dropStatement);
+            }
+            if(freeAgentDetails[1] != []) {
+                let addStatement = 'Added: ';
+                const addsString = freeAgentDetails[1].join(', ');
+                addStatement += addsString;
+                returnList.push(addStatement);
+            }
         }
         returnList.push(`-------------------------------------------------------------------------------------------`);
     });
