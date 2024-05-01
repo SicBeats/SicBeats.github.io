@@ -1,4 +1,4 @@
-import { last_regular_season_week, leagueID } from './leagueInfo.mjs';
+import { last_regular_season_week, leagueID, managers } from './leagueInfo.mjs';
 
 document.addEventListener('DOMContentLoaded', function() {
     const weekDropdown = document.getElementById('week_num');
@@ -27,11 +27,39 @@ function getWeeklyTransactionData() {
             throw new Error('Network response was not ok.');
         })
         .then(data => {
+
+            const weekly_transactions = processWeeklyTransactions(data).toString();
+
             const responseContainer = document.getElementById('responseContainer');
-            responseContainer.innerHTML = JSON.stringify(data, null, 2);
+            responseContainer.innerHTML = weekly_transactions;
         })
         .catch(error => {
             console.error('Fetch error: ', error);
             document.getElementById('responseContainer').innerHtml = 'Error: ' + error.message;
         });
+}
+
+function processWeeklyTransactions(data) {
+    const transactions = JSON.parse(data);
+    let returnList = [];
+
+    transactions.forEach(transaction => {
+        const type = transaction.type;
+        const status = transaction.status;
+        const roster_ids = transaction.roster_ids;
+        let participatingManagerNames = [];
+
+        roster_ids.forEach(roster_id => {
+            const participatingManager = managers.find(manager => manager.roster_num === roster_id);
+            participatingManagerNames.push(participatingManager);
+        })
+
+        console.log(`Transaction type ${type}, Status: ${status}, Players involved: ${participatingManagerNames}`);
+        console.log(`-------------------------------------------------------------------------------------------`);
+
+        returnList.push(`Transaction type ${type}, Status: ${status}, Players involved: ${participatingManagerNames}`);
+        returnList.push(`-------------------------------------------------------------------------------------------`);
+    });
+
+    return returnList;
 }
