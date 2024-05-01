@@ -46,13 +46,14 @@ function processWeeklyTransactions(data) {
         const type = transaction.type;
         const status = transaction.status;
         const roster_ids = transaction.roster_ids;
+        const freeAgentDetails = null;
 
         switch(type) {
             case "trade":
                 acquireTradeDetails(transaction);
                 break;
             case "free_agent":
-                const freeAgentDetails = acquireFreeAgentDetails(transaction);
+                freeAgentDetails = acquireFreeAgentDetails(transaction);
                 break;
             default:
                 break;
