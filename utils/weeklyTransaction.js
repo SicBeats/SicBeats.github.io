@@ -91,6 +91,7 @@ function acquireTradeDetails(trade) {
 function acquireFreeAgentDetails(transaction) {
     const dropSize = Object.entries(transaction.drops).length;
     const addSize = Object.entries(transaction.adds).length;
+    console.log("dropsize: ", dropSize);
 
     let dropList = [];
     let addList = [];
@@ -98,17 +99,18 @@ function acquireFreeAgentDetails(transaction) {
     if (dropSize) {
         dropList.push("Dropped: ");
         transaction.drops.forEach(drop => {
+            console.log("Drop: ", transaction.drop[0]);
             dropList.push(drop[0], ", ");
         });
     }
 
     if (addSize) {
         addList.push("Added: ");
-        transactions.adds.forEach(add => {
+        transaction.adds.forEach(add => {
             addList.push(add[0], ", ");
         });
     }
 
-    return addList, dropList;
+    return [addList, dropList];
 
 }
