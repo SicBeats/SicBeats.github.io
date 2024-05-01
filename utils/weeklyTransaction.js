@@ -54,7 +54,6 @@ function processWeeklyTransactions(data) {
                 break;
             case "free_agent":
                 freeAgentDetails = acquireFreeAgentDetails(transaction);
-                console.log('Free Agent Details: ', freeAgentDetails);
                 break;
             default:
                 break;
@@ -73,6 +72,18 @@ function processWeeklyTransactions(data) {
         console.log(`-------------------------------------------------------------------------------------------`);
 
         returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
+        if(freeAgentDetails[0] != []) {
+            let dropStatement = 'Dropped: ';
+            const dropsString = freeAgentDetails[0].join(', ');
+            dropStatement += dropsString;
+            returnList.push(dropStatement);
+        }
+        if(freeAgentDetails[1] != []) {
+            let addStatement = 'Added: ';
+            const addsString = freeAgentDetails[1].join(', ');
+            addStatement += addsString;
+            returnList.push(addStatement);
+        }
         returnList.push(`-------------------------------------------------------------------------------------------`);
     });
 
@@ -91,19 +102,14 @@ function acquireFreeAgentDetails(transaction) {
     let addList = [];
 
     if (isDrop) {
-        dropList.push("Dropped: ");
-
         Object.entries(transaction.drops).forEach(([key, value]) => {
-            console.log("Drop: ", key);
-            dropList.push(key, ", ");
+            dropList.push(key);
         });
     }
 
     if (isAdd) {
-        addList.push("Added: ");
-
         Object.entries(transaction.drops).forEach(([key, value]) => {
-            addList.push(key, ", ");
+            addList.push(key);
         });
     }
 
