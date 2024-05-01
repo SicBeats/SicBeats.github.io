@@ -28,7 +28,7 @@ function getWeeklyTransactionData() {
         })
         .then(data => {
 
-            const weekly_transactions = processWeeklyTransactions(data).toString();
+            const weekly_transactions = processWeeklyTransactions(data).join('\n');
 
             const responseContainer = document.getElementById('responseContainer');
             responseContainer.innerHTML = weekly_transactions;
@@ -58,8 +58,8 @@ function processWeeklyTransactions(data) {
         console.log(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
         console.log(`-------------------------------------------------------------------------------------------`);
 
-        returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}\n`);
-        returnList.push(`-------------------------------------------------------------------------------------------\n`);
+        returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
+        returnList.push(`-------------------------------------------------------------------------------------------`);
     });
 
     return returnList;
