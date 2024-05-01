@@ -5,7 +5,7 @@
     height: 100vh;
 }
 
-#week_match_btn {
+.home_btn {
     font-size: 20px;
     padding: 10px 20px;
     background-color: #fff;
@@ -13,6 +13,6 @@
     transition: background-color 0.3s ease;
 }
 
-#week_match_btn:hover {
+.home_btn:hover {
     background-color: lightgreen;
 }
