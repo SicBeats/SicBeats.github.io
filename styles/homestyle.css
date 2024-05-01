@@ -4,3 +4,15 @@
     align-items: center;
     height: 100vh;
 }
+
+#week_match_btn {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 2px solid #000;
+    transition: background-color 0.3s ease;
+}
+
+#week_match_btn:hover {
+    background-color: lightgreen;
+}
