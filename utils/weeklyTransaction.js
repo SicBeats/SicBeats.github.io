@@ -92,7 +92,8 @@ function acquireFreeAgentDetails(transaction) {
 
     if (isDrop) {
         dropList.push("Dropped: ");
-        transaction.drops.forEach(drop => {
+
+        Object.entries(transaction.drops).forEach(([key, value]) => {
             console.log("Drop: ", transaction.drop[0]);
             dropList.push(drop[0], ", ");
         });
@@ -100,7 +101,8 @@ function acquireFreeAgentDetails(transaction) {
 
     if (isAdd) {
         addList.push("Added: ");
-        transaction.adds.forEach(add => {
+
+        Object.entries(transaction.drops).forEach(([key, value]) => {
             addList.push(add[0], ", ");
         });
     }
