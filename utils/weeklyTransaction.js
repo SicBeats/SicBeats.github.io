@@ -28,7 +28,7 @@ function getWeeklyTransactionData() {
         })
         .then(data => {
 
-            const weekly_transactions = processWeeklyTransactions(data).join('\n');
+            const weekly_transactions = processWeeklyTransactions(data).join('<br>');
 
             const responseContainer = document.getElementById('responseContainer');
             responseContainer.innerHTML = weekly_transactions;
