@@ -47,6 +47,10 @@ function processWeeklyTransactions(data) {
         const status = transaction.status;
         const roster_ids = transaction.roster_ids;
         const freeAgentDetails = null;
+        
+        console.log(type);
+        console.log(type === "free_agent");
+        console.log(type === 'free_agent');
 
         switch(type) {
             case "trade":
