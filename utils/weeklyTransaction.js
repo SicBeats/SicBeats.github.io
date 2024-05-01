@@ -94,8 +94,8 @@ function acquireFreeAgentDetails(transaction) {
         dropList.push("Dropped: ");
 
         Object.entries(transaction.drops).forEach(([key, value]) => {
-            console.log("Drop: ", transaction.drop[0]);
-            dropList.push(drop[0], ", ");
+            console.log("Drop: ", key);
+            dropList.push(key, ", ");
         });
     }
 
@@ -103,7 +103,7 @@ function acquireFreeAgentDetails(transaction) {
         addList.push("Added: ");
 
         Object.entries(transaction.drops).forEach(([key, value]) => {
-            addList.push(add[0], ", ");
+            addList.push(key, ", ");
         });
     }
 
