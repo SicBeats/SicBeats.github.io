@@ -46,11 +46,7 @@ function processWeeklyTransactions(data) {
         const type = transaction.type;
         const status = transaction.status;
         const roster_ids = transaction.roster_ids;
-        const freeAgentDetails = null;
-        
-        console.log(type);
-        console.log(type === "free_agent");
-        console.log(type === 'free_agent');
+        let freeAgentDetails;
 
         switch(type) {
             case "trade":
@@ -58,6 +54,7 @@ function processWeeklyTransactions(data) {
                 break;
             case "free_agent":
                 freeAgentDetails = acquireFreeAgentDetails(transaction);
+                console.log('Free Agent Details: ', freeAgentDetails);
                 break;
             default:
                 break;
@@ -87,14 +84,13 @@ function acquireTradeDetails(trade) {
 }
 
 function acquireFreeAgentDetails(transaction) {
-    const dropSize = Object.entries(transaction.drops).length;
-    const addSize = Object.entries(transaction.adds).length;
-    console.log("dropsize: ", dropSize);
+    const isDrop = transaction.drops;
+    const isAdd = transaction.adds;
 
     let dropList = [];
     let addList = [];
 
-    if (dropSize) {
+    if (isDrop) {
         dropList.push("Dropped: ");
         transaction.drops.forEach(drop => {
             console.log("Drop: ", transaction.drop[0]);
@@ -102,13 +98,15 @@ function acquireFreeAgentDetails(transaction) {
         });
     }
 
-    if (addSize) {
+    if (isAdd) {
         addList.push("Added: ");
         transaction.adds.forEach(add => {
             addList.push(add[0], ", ");
         });
     }
 
-    return [addList, dropList];
+    const returnList = [dropList, addList];
+
+    return returnList;
 
 }
