@@ -76,12 +76,6 @@ function processWeeklyTransactions(data) {
         console.log(`-------------------------------------------------------------------------------------------`);
 
         returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
-        if(freeAgentDetails[0] != []) {
-            returnList.push(`Adds: ${freeAgentDetails[0]}`);
-        }
-        if(freeAgentDetails[1] != []) {
-            returnList.push(`Drops: ${freeAgentDetails[1]}`);
-        }
         returnList.push(`-------------------------------------------------------------------------------------------`);
     });
 
