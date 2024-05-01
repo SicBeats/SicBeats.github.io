@@ -82,6 +82,5 @@ function acquireTradeDetails(trade) {
 }
 
 function acquireFreeAgentDetails(transaction){
-    let count = Object.objsize(transaction.drops);
-    console.log("Drop count: ", count);
+    console.log("drop count: ", Object.entries(transaction.drops).length)
 }
