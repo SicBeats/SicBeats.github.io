@@ -73,6 +73,8 @@ function processWeeklyTransactions(data) {
 
         returnList.push(`Transaction type: ${type}, Status: ${status}, Players involved: ${managerNames}`);
         if (freeAgentDetails != null) {
+            console.log("drops: ", freeAgentDetails[0]);
+            console.log("adds: ", freeAgentDetails[1]);
             if(freeAgentDetails[0] != []) {
                 let dropStatement = 'Dropped: ';
                 const dropsString = freeAgentDetails[0].join(', ');
