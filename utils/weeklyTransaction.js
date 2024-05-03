@@ -1,4 +1,5 @@
 import { last_regular_season_week, leagueID, managers } from './leagueInfo.mjs';
+import { getPlayerName } from './playerData.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const weekDropdown = document.getElementById('week_num');
@@ -107,6 +108,7 @@ function acquireFreeAgentDetails(transaction) {
 
     if (isDrop) {
         Object.entries(transaction.drops).forEach(([key, value]) => {
+            console.log(getPlayerName(key));
             dropList.push(key);
         });
     }
