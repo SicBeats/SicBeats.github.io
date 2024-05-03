@@ -6,7 +6,7 @@ function getPlayerData(playerId) {
             }
             return response.json();
         })
-        .then(playerData => playerData.get(playerId))
+        .then(data => data[playerId])
         .catch(error => {
             console.error('Fetch error: ', error);
             document.getElementById('responseContainer').innerHTML = 'Error: ' + error.message;
@@ -14,6 +14,6 @@ function getPlayerData(playerId) {
 }
 
 export function getPlayerName(playerId) {
-    return getPlayerData(playerId)
-        .then(player => player.full_name);
+    const player = getPlayerData(playerId);
+    return player.full_name;
 }
