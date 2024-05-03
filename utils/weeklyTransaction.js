@@ -108,7 +108,7 @@ function acquireFreeAgentDetails(transaction) {
 
     if (isDrop) {
         Object.entries(transaction.drops).forEach(([key, value]) => {
-            console.log(getPlayerName(key));
+            //console.log(getPlayerName(key));
             dropList.push(key);
         });
     }
