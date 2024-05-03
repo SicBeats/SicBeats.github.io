@@ -16,7 +16,7 @@ function getPlayerData(playerId) {
     return player;
 }
 
-function getPlayerName(playerId) {
+export function getPlayerName(playerId) {
     const player = getPlayerData(playerId);
     return player.full_name;
 }
