@@ -1,16 +1,16 @@
 function getPlayerData(playerId) {
-
-    function readPlayerJSON() {
-        fetch('./data_files/playerInfo.json')
-            .then(response => response.json())
-            .catch(error => {
-                console.error('Fetch error: ', error);
-                document.getElementById('responseContainer').innerHtml = 'Error: ' + error.message;
-            });
-    }
-
-    return readPlayerJSON()
-        .then(playerData => playerData.get(playerId));
+    return fetch('./data_files/playerInfo.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(playerData => playerData.get(playerId))
+        .catch(error => {
+            console.error('Fetch error: ', error);
+            document.getElementById('responseContainer').innerHTML = 'Error: ' + error.message;
+        });
 }
 
 export function getPlayerName(playerId) {
