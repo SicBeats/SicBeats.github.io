@@ -1,3 +1,4 @@
+export default getPlayerName;
 
 function getPlayerData(playerId) {
 
@@ -16,7 +17,7 @@ function getPlayerData(playerId) {
     return player;
 }
 
-export function getPlayerName(playerId) {
+function getPlayerName(playerId) {
     const player = getPlayerData(playerId);
     return player.full_name;
 }
